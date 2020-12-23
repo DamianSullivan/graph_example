@@ -20,7 +20,7 @@ TEST(GraphStore, CreateVertex){
 TEST(GraphStore, CreateEdge){
     GraphStore graph_store;
 
-	// TODO(dsullivan): Create independent fixtures.
+    // TODO(dsullivan): Create independent fixtures.
     Vertex v0 = graph_store.CreateVertex();
     Vertex v1 = graph_store.CreateVertex();
 
