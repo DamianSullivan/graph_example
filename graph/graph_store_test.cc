@@ -2,9 +2,12 @@
 
 #include <string>
 
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 namespace graph_example {
+
+using testing::ElementsAre;
 
 TEST(GraphStore, CreateVertex){
     GraphStore graph_store;
@@ -28,6 +31,34 @@ TEST(GraphStore, CreateEdge){
 
     EXPECT_EQ(1, v0.neighbors.size());
     EXPECT_EQ(1, v0.neighbors[0]->id);
+}
+
+TEST(GraphStore, AddLabel){
+    GraphStore graph_store;
+
+    // TODO(dsullivan): Create independent fixtures.
+    Vertex v0 = graph_store.CreateVertex();
+    Label l;
+    l.property = "LABEL_1";
+
+    graph_store.AddLabel(&v0, &l);
+
+    ASSERT_THAT(v0.labels, ElementsAre(&l));
+}
+
+
+TEST(GraphStore, RemoveLabel){
+    GraphStore graph_store;
+
+    // TODO(dsullivan): Create independent fixtures.
+    Vertex v0 = graph_store.CreateVertex();
+    Label l;
+    l.property = "LABEL_2";
+
+    graph_store.AddLabel(&v0, &l);
+    graph_store.RemoveLabel(&v0, &l);
+
+    ASSERT_THAT(v0.labels, ElementsAre());
 }
 
 }  // namespace graph_example

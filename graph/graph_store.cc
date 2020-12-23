@@ -17,4 +17,12 @@ void GraphStore::CreateEdge(Vertex* a, Vertex* b) {
     a->neighbors.push_back(b);
 } 
 
+void GraphStore::AddLabel(Vertex* a, Label* l) {
+    a->labels.insert(l);
+}
+    
+void GraphStore::RemoveLabel(Vertex* a, Label* l) {
+    a->labels.erase(l);
+} 
+
 }
