@@ -17,4 +17,17 @@ TEST(GraphStore, CreateVertex){
     EXPECT_EQ(2, v2.id);
 }   
 
+TEST(GraphStore, CreateEdge){
+    GraphStore graph_store;
+
+	// TODO(dsullivan): Create independent fixtures.
+    Vertex v0 = graph_store.CreateVertex();
+    Vertex v1 = graph_store.CreateVertex();
+
+    graph_store.CreateEdge(&v0, &v1);
+
+    EXPECT_EQ(1, v0.neighbors.size());
+    EXPECT_EQ(1, v0.neighbors[0]->id);
+}
+
 }  // namespace graph_example

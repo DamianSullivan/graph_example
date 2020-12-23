@@ -13,4 +13,8 @@ Vertex GraphStore::CreateVertex() {
     return v;
 }
 
+void GraphStore::CreateEdge(Vertex* a, Vertex* b) {
+    a->neighbors.push_back(b);
+} 
+
 }
