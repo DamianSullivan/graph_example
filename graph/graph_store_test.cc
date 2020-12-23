@@ -61,4 +61,27 @@ TEST(GraphStore, RemoveLabel){
     ASSERT_THAT(v0.labels, ElementsAre());
 }
 
+TEST(GraphStore, ShortestPath){
+    GraphStore graph_store;
+    // TODO(dsullivan): Create independent fixtures.
+    Vertex v0 = graph_store.CreateVertex();
+    Vertex v1 = graph_store.CreateVertex();
+    Vertex v2 = graph_store.CreateVertex();
+
+    Label l;
+    l.property = "LABEL_3";
+    graph_store.AddLabel(&v0, &l);
+    graph_store.AddLabel(&v1, &l);
+
+    ASSERT_THAT(v0.labels, ElementsAre(&l)); 
+    ASSERT_THAT(v1.labels, ElementsAre(&l)); 
+
+    graph_store.CreateEdge(&v0, &v1); 
+    graph_store.CreateEdge(&v0, &v2); 
+    graph_store.CreateEdge(&v2, &v1); 
+
+    std::vector<Vertex*> path = graph_store.ShortestPath(&v0, &v1, &l);
+    ASSERT_THAT(path, ElementsAre(&v0, &v1));
+}
+
 }  // namespace graph_example

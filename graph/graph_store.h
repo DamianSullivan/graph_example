@@ -35,9 +35,18 @@ class GraphStore {
         // Removes a label `l` from vertex `a`.
         void RemoveLabel(Vertex* a, Label* l);
 
+        // Should find the shortest path (using created edges) between two vertices
+        // `a` and `b` such that every vertex on such path contains the label `l`.
+        // TODO(dsullivan): Clean up pointer interface and determine const'ness.
+        std::vector<Vertex*> ShortestPath(
+            Vertex* source, Vertex* destination, Label* label);
+
     private:
         // Keeps track of the vertex ids created.
         int vertex_id_;
+
+        // Keeps track of the size of the graph. 
+        int graph_size_;
 };
 
 }  // namespace graph_example
