@@ -6,12 +6,6 @@ cc_library(
     hdrs = ["graph_store.h"],
 )
 
-cc_binary(
-    name = "graph_store_main",
-    srcs = ["graph_store_main.cc"],
-    deps = [":graph_store"],
-)
-
 cc_test(
 	name = "graph_store_test",
 	srcs = ["graph_store_test.cc"],
@@ -19,5 +13,15 @@ cc_test(
 		":graph_store",
 		"@gtest//:gtest",
 		"@gtest//:gtest_main",
+    ],
+)
+
+cc_binary(
+    name = "graph_store_benchmarks",
+    srcs = ["graph_store_benchmarks.cc"],
+    linkstatic = True,
+    deps = [
+        ":graph_store",
+        "@gbenchmark//:benchmark",
     ],
 )
