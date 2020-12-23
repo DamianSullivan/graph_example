@@ -1,13 +1,16 @@
 #include "graph_store.h"
 
-#include <iostream>
-#include <queue>
-#include <string>
-#include <unordered_map>
-#include <vector>
+namespace graph_example {
 
 using namespace std;
 
-namespace graph_example {
-    GraphStore::GraphStore() {}
+GraphStore::GraphStore() : vertex_id_(0) {}
+
+Vertex GraphStore::CreateVertex() {
+    Vertex v;
+    v.id = vertex_id_;
+    ++vertex_id_;
+    return v;
+}
+
 }
