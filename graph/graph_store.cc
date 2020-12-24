@@ -10,9 +10,8 @@ using namespace std;
 
 GraphStore::GraphStore() : vertex_id_(0) {}
 
-Vertex GraphStore::CreateVertex() {
-    Vertex v;
-    v.id = vertex_id_;
+Vertex* GraphStore::CreateVertex() {
+    Vertex* v = new Vertex(vertex_id_);
 
     // TODO(dsullivan): Separate out id assignment, preferably from an injected
     // class or at least a separate call wrapped in a mutex.

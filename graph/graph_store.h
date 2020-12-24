@@ -15,6 +15,7 @@ struct Vertex {
     int id;
     std::vector<Vertex*> neighbors;
     std::unordered_set<Label*> labels;
+    Vertex(int id) : id(id) {}
 };
 
 class GraphStore {
@@ -23,7 +24,7 @@ class GraphStore {
         GraphStore();
 
         // Creates a new vertex and assigns a unique id.
-        Vertex CreateVertex();
+        Vertex* CreateVertex();
 
         // Creates a directed edge between vertex a and vertex b.
         // TODO(dsullivan): Clean up pointer interface and determine const'ness.
